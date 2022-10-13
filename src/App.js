@@ -22,10 +22,10 @@ function App() {
           <Route path="/" element={<Navigate to="/dashboard/home"/>}/>
           <Route path='/sign-in' element={<SignIn setUser={setUser}/>}/>
           <Route path={'/dashboard'} element={
-            <PrivateRoute user={user}
-                          setInitialData={setInitialData}
-                          setInitialLoading={setInitialLoading}>
-              <Dashboard user={user}/>
+            <PrivateRoute user={user}>
+              <Dashboard user={user}
+                         setInitialData={setInitialData}
+                         setInitialLoading={setInitialLoading}/>
             </PrivateRoute>}>
             <Route path='*' element={<Error404/>}/>
             {pageList.map((page, i) => {

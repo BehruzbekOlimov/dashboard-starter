@@ -10,7 +10,7 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
-import bg from "../asssets/images/erp-bg.jpg";
+// import bg from "../asssets/images/erp-bg.jpg";
 import {createTheme, ThemeProvider} from '@mui/material/styles';
 import axiosClient from "../utills/axiosClient";
 import {useState} from "react";
@@ -30,6 +30,10 @@ export default function SignIn({setUser}) {
     setLoading(true)
     const data = new FormData(event.currentTarget);
     try {
+      console.log({
+        username: data.get('username'),
+        password: data.get('password'),
+      })
       const res = await axiosClient.post("/user/sign-in", {
         username: data.get('username'),
         password: data.get('password'),
@@ -120,12 +124,13 @@ export default function SignIn({setUser}) {
           sm={4}
           md={8}
           sx={{
-            backgroundImage: `url(${bg})`,
+            // backgroundImage: `url(${bg})`,
+            backgroundImage: `url(https://picsum.photos/1500/1000)`,
             backgroundRepeat: 'no-repeat',
             backgroundColor: (t) =>
               t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
             backgroundSize: 'cover',
-            backgroundPosition: 'center right',
+            backgroundPosition: 'center center',
           }}
         />
       </Grid>
