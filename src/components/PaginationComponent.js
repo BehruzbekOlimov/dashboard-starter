@@ -1,11 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import {Outlet} from "react-router-dom";
-import axios from "axios";
-import {SERVER_URL} from "../utills/constants";
 import {Pagination} from "@mui/material";
+import axiosClient from "../utills/axiosClient";
 
 const PaginationComponent = ({show = false, refresh, setData, setLoading, pageable}) => {
-    console.log(pageable)
     const [page, setPage] = useState((pageable && pageable.page)?pageable.page:0);
     const [totalElements, setTotalElements] = useState(0);
     const [size, setSize] = useState((pageable && pageable.size)?pageable.size:20);
@@ -14,11 +12,12 @@ const PaginationComponent = ({show = false, refresh, setData, setLoading, pageab
     useEffect(() => {
         if (pageable) {
             setLoading(true)
-            axios.get(`${SERVER_URL}${pageable.fetchLink}?page=${page}&size=${size}&orderBy=${orderBy}&desc=${desc}`).then(r => {
+            axiosClient.get(`${pageable.fetchLink}?page=${page}&size=${size}&orderBy=${orderBy}&desc=${desc}`).then(r => {
                 setData(r.data.data)
                 setTotalElements(r.data.totalElements)
+                setLoading(false)
             }).catch(() => {
-
+                setLoading(false)
             })
         }
     }, [pageable, refresh, page, size]);

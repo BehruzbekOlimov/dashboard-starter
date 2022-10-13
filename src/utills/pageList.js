@@ -1,7 +1,8 @@
-import First from "../pages/First";
+// import First from "../pages/First";
 import Second from "../pages/Second";
 import {roles} from "./constants";
 import {HomeWork, ShortText} from "@mui/icons-material";
+import Home from "../pages/Home";
 
 
 // eslint-disable-next-line import/no-anonymous-default-export
@@ -10,7 +11,7 @@ export default [
     name: "Home",
     path: "home",
     icon: <HomeWork/>,
-    element: (...props)=><First {...props}/>,
+    element: (props)=><Home {...props}/>,
     pageable: {
       show: true,
       fetchLink: '/user/users',
