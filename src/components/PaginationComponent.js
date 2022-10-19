@@ -3,7 +3,7 @@ import {Outlet} from "react-router-dom";
 import {Pagination, TablePagination} from "@mui/material";
 import axiosClient from "../utills/axiosClient";
 
-const PaginationComponent = ({show = false, refresh, setData, setLoading, pageable}) => {
+const PaginationComponent = ({show = false, loading, refresh, setData, setLoading, pageable}) => {
     const [page, setPage] = useState((pageable && pageable.page) ? pageable.page : 0);
     const [totalElements, setTotalElements] = useState(0);
     const [size, setSize] = useState((pageable && pageable.size) ? pageable.size : 25);
@@ -29,7 +29,6 @@ const PaginationComponent = ({show = false, refresh, setData, setLoading, pageab
         }
     }, [pageable]);
 
-    console.log(Math.ceil(totalElements/size))
     useEffect(() => {
         if (pageable) {
             setLoading(true)
@@ -44,6 +43,7 @@ const PaginationComponent = ({show = false, refresh, setData, setLoading, pageab
             })
         }
     }, [refresh, page, size]);
+
     return (
         <>
             {show && <>
@@ -63,7 +63,7 @@ const PaginationComponent = ({show = false, refresh, setData, setLoading, pageab
 
             </>}
             <Outlet/>
-            {show && <>
+            {(show && (totalElements/size)>1) && <>
                 <Pagination count={Math.ceil(totalElements/size)} defaultPage={page+1} boundaryCount={3} onChange={(e,val) => {
                 setPage(val)
                 }

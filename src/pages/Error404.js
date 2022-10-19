@@ -1,10 +1,14 @@
 import React from 'react';
+import {Helmet} from "react-helmet";
 
 const Error404 = () => {
   return (
     <div style={{paddingTop: 150}}>
-      <h1 style={{textAlign: 'center', color: 'gray'}}>
-        Page not found!
+        <Helmet>
+            <title>Error not found!</title>
+        </Helmet>
+      <h1 style={{fontSize: 52, textAlign: 'center', color: 'gray'}}>
+          Error not found!
       </h1>
     </div>
   );

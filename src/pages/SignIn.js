@@ -17,6 +17,7 @@ import {useState} from "react";
 import {Alert, AlertTitle} from "@mui/material";
 import {LOCAL_STORAGE_NAME} from "../utills/constants";
 import {useNavigate} from "react-router-dom";
+import {Helmet} from "react-helmet";
 
 const theme = createTheme();
 
@@ -60,6 +61,9 @@ export default function SignIn({setUser}) {
 
   return (
     <ThemeProvider theme={theme}>
+      <Helmet>
+        <title>Sign in</title>
+      </Helmet>
       <Grid container component="main" sx={{height: '100vh'}}>
         <CssBaseline/>
         <Grid item xs={12} sm={8} md={4} component={Paper} elevation={6} square>

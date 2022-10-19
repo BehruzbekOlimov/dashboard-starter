@@ -77,7 +77,7 @@ const mdTheme = createTheme({
   }
 });
 
-export default function Dashboard({setInitialData, setInitialLoading}) {
+export default function Dashboard({setInitialData, setInitialLoading, initialLoading}) {
   const [currentMenu, setCurrentMenu] = useState(pageList[0]);
   const [open, setOpen] = useState(true);
   const [refreshVal, setRefreshVal] = useState(0);
@@ -158,7 +158,7 @@ export default function Dashboard({setInitialData, setInitialLoading}) {
       >
         <Toolbar/>
         <Container maxWidth="lg" sx={{mt: 2, mb: 4}}>
-          <PaginationComponent show={currentMenu && currentMenu.pageable && currentMenu.pageable.show} pageable={currentMenu.pageable} refresh={refreshVal} setData={setInitialData} setLoading={setInitialLoading}/>
+          <PaginationComponent loading={initialLoading} show={currentMenu && currentMenu.pageable && currentMenu.pageable.show} pageable={currentMenu.pageable} refresh={refreshVal} setData={setInitialData} setLoading={setInitialLoading}/>
         </Container>
         <ToastContainer/>
       </Box>

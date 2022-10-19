@@ -13,7 +13,7 @@ function App() {
   const [user, setUser] = useState(null);
   const [initialData, setInitialData] = useState([]);
   const [initialLoading, setInitialLoading] = useState(false);
-  const loading = false;
+
   return (
     <div className="App">
       <BrowserRouter>
@@ -25,11 +25,12 @@ function App() {
             <PrivateRoute user={user}>
               <Dashboard user={user}
                          setInitialData={setInitialData}
+                         initialLoading={initialLoading}
                          setInitialLoading={setInitialLoading}/>
             </PrivateRoute>}>
             <Route path='*' element={<Error404/>}/>
             {pageList.map((page, i) => {
-              return <Route key={i} path={page.path} element={page.element({initialData, initialLoading, loading, user})}/>
+              return <Route key={i} path={page.path} element={page.element({initialData, initialLoading, user})}/>
             })}
           </Route>
         </Routes>
