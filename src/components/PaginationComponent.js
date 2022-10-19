@@ -52,9 +52,10 @@ const PaginationComponent = ({show = false, loading, refresh, setData, setLoadin
                     count={totalElements}
                     page={page}
                     onPageChange={(e, val) => {
-                        console.log(val)
+                        setPage(val)
                     }
                     }
+                    rowsPerPageOptions={[5,10,20,25,50,100,150,200]}
                     rowsPerPage={size}
                     onRowsPerPageChange={e => {
                         setSize(e.target.value)
@@ -63,8 +64,8 @@ const PaginationComponent = ({show = false, loading, refresh, setData, setLoadin
 
             </>}
             <Outlet/>
-            {(show && (totalElements/size)>1) && <>
-                <Pagination count={Math.ceil(totalElements/size)} defaultPage={page+1} boundaryCount={3} onChange={(e,val) => {
+            {(show || (totalElements/size)>1) && <>
+                <Pagination variant="text"  color="secondary" shape="rounded" disabled={loading} count={Math.ceil(totalElements/size)} defaultPage={page+1} boundaryCount={3} onChange={(e,val) => {
                 setPage(val)
                 }
                 }/>

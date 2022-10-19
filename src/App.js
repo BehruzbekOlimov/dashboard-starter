@@ -22,7 +22,7 @@ function App() {
           <Route path="/" element={<Navigate to="/dashboard/home"/>}/>
           <Route path='/sign-in' element={<SignIn setUser={setUser}/>}/>
           <Route path={'/dashboard'} element={
-            <PrivateRoute user={user}>
+            <PrivateRoute user={user} setUser={setUser}>
               <Dashboard user={user}
                          setInitialData={setInitialData}
                          initialLoading={initialLoading}
