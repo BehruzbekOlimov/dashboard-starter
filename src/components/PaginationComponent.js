@@ -16,16 +16,6 @@ const PaginationComponent = ({show = false, loading, refresh, setData, setLoadin
             setSize((pageable.size) ? pageable.size : 20)
             setOrderBy((pageable.sort && pageable.sort.options) ? pageable.sort.options[0].value:"id")
             setDesc(pageable.sort?pageable.sort.desc:false)
-            setLoading(true)
-            axiosClient.get(`${pageable.fetchLink}?page=${page}&size=${size}&orderBy=${orderBy}&desc=${desc}`).then(r => {
-                setData(r.data.data)
-                if (size<r.data.totalElements)
-                    setSize(r.data.totalElements)
-                setTotalElements(r.data.totalElements)
-                setLoading(false)
-            }).catch(() => {
-                setLoading(false)
-            })
         }
     }, [pageable]);
 
@@ -42,7 +32,7 @@ const PaginationComponent = ({show = false, loading, refresh, setData, setLoadin
                 setLoading(false)
             })
         }
-    }, [refresh, page, size]);
+    }, [refresh, page, size, pageable, setLoading, orderBy, desc, setData]);
 
     return (
         <>
